@@ -57,7 +57,6 @@ def write():
         file.write(_content)
         print("成功写入!")
 
-
 if __name__ == '__main__':
     print(send_data)
     if len(send_data) > 0:
