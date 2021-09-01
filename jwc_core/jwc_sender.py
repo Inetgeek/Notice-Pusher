@@ -36,7 +36,7 @@ def sender_mail():
 Nowtime = time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())
 
 # @scheduler.scheduled_job('cron', hour = 22,minute = 50)
-async def _3():#个人自用请去掉异步io(删掉async)
+async def _init_():#个人自用请去掉异步io(删掉async)
     with open(r'/home/jwc_notice.txt', "r+", encoding="utf-8") as file:
         a = file.read()
         if len(a) > 0:
@@ -50,4 +50,5 @@ async def _3():#个人自用请去掉异步io(删掉async)
                 file.seek(0)
                 file.truncate()
                 sys.exit()
-                
+if __name__ == '__main__':
+    _init_()
