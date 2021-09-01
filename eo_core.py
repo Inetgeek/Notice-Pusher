@@ -99,13 +99,13 @@ async def _init_(): #个人自用请去掉异步io(删掉async)
                 url = site.xpath('div[@class="fields pr_fields"]/span[@class="Article_Title"]/a/@href')[0]
                 title = site.xpath('div[@class="fields pr_fields"]/span[@class="Article_Title"]/a/@title')[0]
                 if str(time) == str(NowDate):
-                    send_content = send_content+time+' '+title+':'+'https://dgxg.njust.edu.cn'+url+'\n\n'
+                    send_content = send_content+time+' '+title+':'+'https://xxxxx.edu.cn'+url+'\n\n'
                     file.write(MD5(title)+'\n')
             file.close()
         with open(NowDate.isoformat()+'A' + '.txt', 'r+', encoding="utf-8") as file:
             if len(file.read()) > 0:
                 try: #下面一句替换成你要发送的方式,如采用微信推送则换成push+的发送接口,不要直接用下面一行代码
-                    await bot.send_group_msg(group_id=201921077, message=send_title+send_content + '[CQ:at,qq=all]\n'+str(datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")))
+                    await bot.send_group_msg(group_id=2xxxxx7, message=send_title+send_content + '[CQ:at,qq=all]\n'+str(datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")))
                 except: #若发生异常则邮件通知开发者
                     sender_mail()
                     sys.exit()
@@ -120,7 +120,7 @@ async def _init_(): #个人自用请去掉异步io(删掉async)
                 url = site.xpath('div[@class="fields pr_fields"]/span[@class="Article_Title"]/a/@href')[0]
                 title = site.xpath('div[@class="fields pr_fields"]/span[@class="Article_Title"]/a/@title')[0]
                 if str(time) == str(NowDate):
-                    send_content = send_content+time+' '+title+':'+'https://dgxg.njust.edu.cn'+url+'\n\n'
+                    send_content = send_content+time+' '+title+':'+'https://xxxxx.edu.cn'+url+'\n\n'
                     compare(MD5(title))
                     if flag == 1:
                         print("A相同，不写入，不发送，级网暂无新通知,今天有过通知")
