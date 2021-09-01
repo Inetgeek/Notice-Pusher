@@ -131,8 +131,8 @@ async def _init_(): #个人自用请去掉异步io(删掉async)
                         file.write(MD5(title) + '\n')
                         print("A不同，写入成功并发送新通知,今天有过通知")
             if _FLAG_ == 1:
-                try:
-                    await bot.send_group_msg(group_id=201921077,message=send_title + send_content + '[CQ:at,qq=all]\n' + str(datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")))
+                try:#下面一句替换成你要发送的方式,如采用微信推送则换成push+的发送接口,不要直接用下面一行代码
+                    await bot.send_group_msg(group_id=2xxxxxx7,message=send_title + send_content + '[CQ:at,qq=all]\n' + str(datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")))
                 except:
                     sender_mail()
                     sys.exit()
