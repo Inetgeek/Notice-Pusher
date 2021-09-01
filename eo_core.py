@@ -144,3 +144,5 @@ async def _init_(): #个人自用请去掉异步io(删掉async)
             else:
                 file.close()
 
+if __name__ == '__main__':
+    _init_()
