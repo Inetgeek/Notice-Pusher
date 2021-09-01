@@ -3,13 +3,11 @@
 
 import sys
 import os, time, datetime
-import nonebot
-from nonebot import require
 import smtplib
 from email import (header)
 from email.mime import (text, multipart)
 
-with open(r'/home/CCBot/src/plugins/jwc_notice.txt', "r+", encoding="utf-8") as file:
+with open(r'/home/jwc_notice.txt', "r+", encoding="utf-8") as file: #自行更改路径
     a = file.read()
 
 send_title = "机器人风险提示"
@@ -18,10 +16,10 @@ send_content = '<p style="font-size:34px;color:#ca1b0f;"><span style="border-bot
 
 def sender_mail():
     smtp_Obj = smtplib.SMTP_SSL('smtp.qq.com',465)
-    sender_addrs = 'digran@foxmail.com'
-    password = "uavcniivsooqdige"
+    sender_addrs = 'xxxxxx'
+    password = "xxxxxx"
     smtp_Obj.login(sender_addrs, password)
-    receiver_addrs = ['ranshens@foxmail.com']
+    receiver_addrs = ['xxxxxx']
     for email_addrs in receiver_addrs:
         try:
             msg = multipart.MIMEMultipart()
@@ -37,16 +35,14 @@ def sender_mail():
 
 Nowtime = time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())
 
-scheduler = require('nonebot_plugin_apscheduler').scheduler
-@scheduler.scheduled_job('cron', hour = 22,minute = 50)
-async def _3():
-    with open(r'/home/CCBot/src/plugins/jwc_notice.txt', "r+", encoding="utf-8") as file:
+# @scheduler.scheduled_job('cron', hour = 22,minute = 50)
+async def _3():#个人自用请去掉异步io(删掉async)
+    with open(r'/home/jwc_notice.txt', "r+", encoding="utf-8") as file:
         a = file.read()
-        bot = nonebot.get_bots()['2183939725']
         if len(a) > 0:
-            try:
-                await bot.send_msg(user_id=1348539882, message=a+'\n'+'\n当前时间: '+Nowtime)
-                await bot.send_group_msg(group_id=201921077, message=a+'\n [CQ:at,qq=all]'+'\n当前时间: '+Nowtime)
+            try:#下面两句句替换成你要发送的方式,如采用微信推送则换成push+的发送接口,不要直接用下面两行代码
+                await bot.send_msg(user_id=1xxxxxxx2, message=a+'\n'+'\n当前时间: '+Nowtime)
+                await bot.send_group_msg(group_id=2xxxxxxxx7, message=a+'\n [CQ:at,qq=all]'+'\n当前时间: '+Nowtime)
                 file.seek(0)
                 file.truncate()
             except:
