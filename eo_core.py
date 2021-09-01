@@ -137,7 +137,7 @@ async def _init_(): #个人自用请去掉异步io(删掉async)
                     sender_mail()
                     sys.exit()
             file.close()
-    with open(NowDate.isoformat()+'B' + '.txt', 'r+', encoding="utf-8") as file:
+    with open(NowDate.isoformat()+'A' + '.txt', 'r+', encoding="utf-8") as file:
             if len(file.read()) == 0:
                 print("A级网今日无暂无通知")
                 file.close()
