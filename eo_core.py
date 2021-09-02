@@ -78,7 +78,7 @@ def sender_mail(): #构造邮件并发送邮件
     smtp_Obj.quit()
 
 
-# @scheduler.scheduled_job('cron', minute='*/1', id='sleep1')
+# @scheduler.scheduled_job('interval',  seconds = 23, id='sleep1')
 async def _init_(): #个人自用请去掉异步io(删掉async)
     delete()
     _FLAG_ = 0
@@ -99,7 +99,7 @@ async def _init_(): #个人自用请去掉异步io(删掉async)
                 url = site.xpath('div[@class="fields pr_fields"]/span[@class="Article_Title"]/a/@href')[0]
                 title = site.xpath('div[@class="fields pr_fields"]/span[@class="Article_Title"]/a/@title')[0]
                 if str(time) == str(NowDate):
-                    send_content = send_content+time+' '+title+':'+'https://xxxxx.edu.cn'+url+'\n\n' #替换成级网链接
+                    send_content = send_content + title + ':\n' + 'https://xxx.xxx.cn' + url + '\n\n' #替换成级网链接
                     file.write(MD5(title)+'\n')
             file.close()
         with open(NowDate.isoformat()+'A' + '.txt', 'r+', encoding="utf-8") as file:
@@ -120,7 +120,6 @@ async def _init_(): #个人自用请去掉异步io(删掉async)
                 url = site.xpath('div[@class="fields pr_fields"]/span[@class="Article_Title"]/a/@href')[0]
                 title = site.xpath('div[@class="fields pr_fields"]/span[@class="Article_Title"]/a/@title')[0]
                 if str(time) == str(NowDate):
-                    send_content = send_content+time+' '+title+':'+'https://xxxxx.edu.cn'+url+'\n\n' #替换成级网链接
                     compare(MD5(title))
                     if flag == 1:
                         print("A相同，不写入，不发送，级网暂无新通知,今天有过通知")
@@ -130,6 +129,7 @@ async def _init_(): #个人自用请去掉异步io(删掉async)
                         _FLAG_ = 1
                         file.write(MD5(title) + '\n')
                         print("A不同，写入成功并发送新通知,今天有过通知")
+                        send_content = send_content + title + ':\n' + 'https://xxx.xxx.cn' + url + '\n\n'  #替换成级网链接
             if _FLAG_ == 1:
                 try:#下面一句替换成你要发送的方式,如采用微信推送则换成push+的发送接口,不要直接用下面一行代码
                     await bot.send_group_msg(group_id=2xxxxxx7,message=send_title + send_content + '[CQ:at,qq=all]\n' + str(datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")))
